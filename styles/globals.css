@@ -1,24 +1,84 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-  color: #7dd3fc;
-  text-decoration: none;
-}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
-* {
+/* Box sizing rules */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-html {
-  color-scheme: dark;
-}
+/* Set core body defaults */
 body {
-  color: #e7e8e8;
-  background: #0f1318;
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background: url("/darkblockster-bg.jpg") #000000 100% 100%;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+:root {
+  --background-color: #1c1e21;
+  --white: #ffffff;
+  --tw-color1: #a855f7;
+  --tw-color1-hover: #9333ea;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--white);
+  margin: 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+.lds-spinner {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-spinner div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #fff;
+  animation: lds-spinner 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-spinner div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.lds-spinner div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.lds-spinner div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+@keyframes lds-spinner {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%,
+  100% {
+    top: 24px;
+    height: 32px;
+  }
 }
