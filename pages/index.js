@@ -3,15 +3,29 @@ import styles from "../styles/Home.module.css";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import LoadSpinner from "./../components/LoadSpinner";
+import LoadSpinner from "../components/LoadSpinner";
 import { useContract } from "@thirdweb-dev/react";
-import { useAddress } from "@thirdweb-dev/react";
+import { useAddress, useChainId } from "@thirdweb-dev/react";
 
 let moment = require("moment-timezone");
 
 export default function Home() {
-  const CONTRACT = "0x636D5A5229Fe396e4087B80d32188B9a6DbeA970";
-  const CONTENT_NFT = "0xda2ec25b733fa79af72277b920639bbb30716164:23:Polygon";
+  const contracts = {
+    Goerli: "0xDD581CD3383d965b2d72Adf1c16eD4Da36912542", // goerli
+    Polygon: "0x636D5A5229Fe396e4087B80d32188B9a6DbeA970", // poly
+    Avalanche: "0x776bFDE3716EB8c7b766a1393c963cC0161D4B7C", // avax
+  };
+
+  const contentNft = {
+    Goerli:
+      "0xf4910c763ed4e47a585e2d34baa9a4b611ae448c:30553606573219150352991292921105176340809048341686170040023897572536177655809:Ethereum-Goerli",
+    Polygon: "0xda2ec25b733fa79af72277b920639bbb30716164:23:Polygon",
+    Avalanche: "0x6118c71850e5d7b18c2021a17bf897421336f909:1:Avalanche",
+  };
+
+  // just change these two, should work for all chains, make sure to also change ChainId in _app.js
+  const CONTRACT = contracts["Polygon"];
+  const CONTENT_NFT = contentNft["Polygon"];
 
   const { contract, isLoading, error } = useContract(
     CONTRACT,
